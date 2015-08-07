@@ -1,0 +1,29 @@
+{
+  "curly": false,
+  "eqeqeq": false,
+  "expr": true,
+  "immed": true,
+  "latedef": false,
+  "laxcomma": true,
+  "newcap": true,
+  "noarg": true,
+  "nomen": false,
+  "node": true,
+  "sub": true,
+  "undef": true,
+  "unused": true,
+
+  "eqnull": true,
+
+  "lastsemic": true,
+
+  "globals": {
+    "console": true,
+    "require": true,
+    "define": true,
+  },
+
+  "maxstatements":15,
+  "maxdepth": 2,
+  "maxcomplexity": 10
+}
