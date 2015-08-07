@@ -1,0 +1,17 @@
+{
+  "name": "jab-vimeo",
+  "version": "0.0.1",
+  "description": "vimeo API + stream support & duplicate function",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "A. Mélon <paztaga@gmail.com>",
+  "license": "MIT",
+  "dependencies": {
+    "bluebird": "^2.9.34",
+    "concat-stream": "^1.5.0",
+    "hyperquest": "^1.2.0",
+    "vimeo": "^1.1.4"
+  }
+}
