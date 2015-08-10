@@ -86,7 +86,7 @@ Number
       });
 ```
 
-## patch
+## `patch(videoId , data)`
 
 Returns a Promise Object
 
@@ -153,7 +153,8 @@ Number
 ```
 
 
-## duplicate
+## `duplicate(videoId)`
+
 Returns a Promise Object
 
 ### Params
@@ -213,7 +214,8 @@ Number
 
 
 
-## info
+## `info(videoId)`
+
 Returns a Promise Object
 
 ### Params
