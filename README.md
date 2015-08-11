@@ -86,7 +86,7 @@ Number
       });
 ```
 
-## `patch(videoId , data)`
+## `patch(videoId, data)`
 
 Returns a Promise Object
 

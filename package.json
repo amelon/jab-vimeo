@@ -1,6 +1,6 @@
 {
   "name": "jab-vimeo",
-  "version": "0.0.7",
+  "version": "0.0.8",
   "description": "vimeo API + stream support & duplicate, patch, info functions with some promises",
   "main": "index.js",
   "repository": {
