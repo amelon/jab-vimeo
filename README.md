@@ -1,5 +1,5 @@
 # jab-vimeo
-vimeo API + stream support &amp; duplicate &amp; patch &amp; info functions
+vimeo API + stream support &amp; duplicate &amp; patch &amp; info &amp; getDownloadStream functions
 
 # Official Node.js library for the Vimeo API (extended).
 
@@ -19,19 +19,10 @@ Returns a Promise Object
 
 ### Params
 <dl>
-<dt>
-stream
-</dt>
-<dd>
-Readable stream to upload to vimeo
-</dd>
-
-<dt>
-opts
-</dt>
-<dd>
-Object.
-</dd>
+    <dt>stream</dt>
+    <dd>Readable stream to upload to vimeo</dd>
+    <dt>opts</dt>
+    <dd>Object</dd>
 </dl>
 
 `opts` is optional
@@ -47,43 +38,30 @@ If no name is given, function try to determine filename on stream object.
 Promise is resolved with following properties
 
 <dl>
-<dt>
-body
-</dt>
-<dd>
-body response of patch on video
-</dd>
-
-<dt>
-res
-</dt>
-<dd>
-Object.
-</dd>
-<dt>
-videoId
-</dt>
-<dd>
-Number
-</dd>
+    <dt>body</dt>
+    <dd>body response of patch on video</dd>
+    <dt>res</dt>
+    <dd>Object</dd>
+    <dt>videoId</dt>
+    <dd>Number</dd>
 </dl>
 
 
 ### Example
 ```JavaScript
-    var Vimeo = require('jab-vimeo').Vimeo;
-    var lib   = new Vimeo(CLIENT_ID, CLIENT_SECRET, ACCESS_TOKEN);
+var Vimeo = require('jab-vimeo').Vimeo;
+var lib   = new Vimeo(CLIENT_ID, CLIENT_SECRET, ACCESS_TOKEN);
+var fs    = require('fs');
 
-    var fs    = require('fs');
-    var streamToUpload = fs.createReadStream(path.join(__dirname, 'your_video.mp4'));
+var streamToUpload = fs.createReadStream(path.join(__dirname, 'your_video.mp4'));
 
-    lib.uploadStream(streamToUpload)
-      .then(function(props) {
-        console.log(props.res.headers);
-        console.log(props.res.statusCode);
-        console.log(props.body);
-        console.log(props.videoId);
-      });
+lib.uploadStream(streamToUpload)
+  .then(function(props) {
+    console.log(props.res.headers);
+    console.log(props.res.statusCode);
+    console.log(props.body);
+    console.log(props.videoId);
+  });
 ```
 
 ## `patch(videoId, data)`
@@ -92,19 +70,10 @@ Returns a Promise Object
 
 ### Params
 <dl>
-<dt>
-videoId
-</dt>
-<dd>
-existing id of a vimeo video
-</dd>
-
-<dt>
-data
-</dt>
-<dd>
-Object.
-</dd>
+    <dt>videoId</dt>
+    <dd>existing id of a vimeo video</dd>
+    <dt>data</dt>
+    <dd>Object</dd>
 </dl>
 
 `data` can be anything available on [Vimeo API](https://developer.vimeo.com/api/spec)
@@ -114,42 +83,30 @@ Object.
 Promise is resolved with following properties
 
 <dl>
-<dt>
-body
-</dt>
-<dd>
-body response of patch on video
-</dd>
-
-<dt>
-res
-</dt>
-<dd>
-Object.
-</dd>
-<dt>
-videoId
-</dt>
-<dd>
-Number
-</dd>
+    <dt>body</dt>
+    <dd>body response of patch on video</dd>
+    <dt>res</dt>
+    <dd>Object</dd>
+    <dt>videoId</dt>
+    <dd>Number</dd>
 </dl>
 
 
 ### Example
 
 ```JavaScript
-    var Vimeo = require('jab-vimeo').Vimeo;
-    var lib   = new Vimeo(CLIENT_ID, CLIENT_SECRET, ACCESS_TOKEN);
-    var data = {name: 'my new video name', description: 'awesome description of my video'}
+var Vimeo = require('jab-vimeo').Vimeo;
+var lib   = new Vimeo(CLIENT_ID, CLIENT_SECRET, ACCESS_TOKEN);
 
-    lib.patch(videoId, data)
-      .then(function(props) {
-        console.log(props.res.headers);
-        console.log(props.res.statusCode);
-        console.log(props.body);
-        console.log(props.videoId);
-      });
+var data = {name: 'my new video name', description: 'awesome description of my video'}
+
+lib.patch(videoId, data)
+  .then(function(props) {
+    console.log(props.res.headers);
+    console.log(props.res.statusCode);
+    console.log(props.body);
+    console.log(props.videoId);
+  });
 ```
 
 
@@ -159,59 +116,86 @@ Returns a Promise Object
 
 ### Params
 <dl>
-<dt>
-videoId
-</dt>
-<dd>
-existing id of a vimeo video
-</dd>
+    <dt>videoId</dt>
+    <dd>existing id of a vimeo video</dd>
 </dl>
 
-On Vimeo, there are different video quality available for download.
-
-Function try to duplicate video with following priority: `original` `source`  `hd` `sd` `mobile`
+> On Vimeo, there are different video quality available for download.
+>
+> Function try to duplicate video with following priority: `original`
+> `source`  `hd` `sd` `mobile`
 
 ### Return
 Promise is resolved with following properties:
 <dl>
-<dt>
-body
-</dt>
-<dd>
-body response of patch on video
-</dd>
-
-<dt>
-res
-</dt>
-<dd>
-Object.
-</dd>
-<dt>
-videoId
-</dt>
-<dd>
-Number
-</dd>
+    <dt>body</dt>
+    <dd>body response of patch on video</dd>
+    <dt>res</dt>
+    <dd>Object</dd>
+    <dt>videoId</dt>
+    <dd>Number</dd>
 </dl>
 
 
 ### Example
 
 ```JavaScript
-    var Vimeo = require('jab-vimeo').Vimeo;
-    var lib   = new Vimeo(CLIENT_ID, CLIENT_SECRET, ACCESS_TOKEN);
-    var data = {name: 'my new video name', description: 'awesome description of my video'}
+var Vimeo = require('jab-vimeo').Vimeo;
+var lib   = new Vimeo(CLIENT_ID, CLIENT_SECRET, ACCESS_TOKEN);
 
-    lib.duplicate(videoId)
-      .then(function(props) {
-        console.log(props.res.headers);
-        console.log(props.res.statusCode);
-        console.log(props.body);
-        console.log(props.videoId);
-      });
+lib.duplicate(videoId)
+  .then(function(props) {
+    console.log(props.res.headers);
+    console.log(props.res.statusCode);
+    console.log(props.body);
+    console.log(props.videoId);
+  });
 ```
 
+## `getDownloadStream(videoId)`
+
+Returns a Promise Object
+
+### Params
+<dl>
+    <dt>videoId</dt>
+    <dd>existing id of a vimeo video</dd>
+</dl>
+
+> On Vimeo, there are different video quality available for download.
+>
+> Function try to duplicate video with following priority: `original`
+> `source`  `hd` `sd` `mobile`
+
+### Return
+Promise is resolved with following properties:
+<dl>
+    <dt>req</dt>
+    <dd>hyperquest request representing readable stream</dd>
+</dl>
+
+
+### Example
+
+```JavaScript
+var Vimeo   = require('jab-vimeo').Vimeo;
+var lib     = new Vimeo(CLIENT_ID, CLIENT_SECRET, ACCESS_TOKEN);
+var Promise = require('bluebird');
+var fs      = require('fs');
+
+function saveFile(stream) {
+  return new Promise(function(resolve, reject) {
+    var file = fs.createWriteStream('./downstream.mp4');
+
+    stream.pipe(file);
+    file.on('finish', function() { resolve(); });
+    file.on('error', function(err) { reject(err); });
+  });
+}
+
+lib.getDownloadStream(videoId)
+  .then(saveFile);
+```
 
 
 ## `info(videoId)`
@@ -220,12 +204,8 @@ Returns a Promise Object
 
 ### Params
 <dl>
-<dt>
-videoId
-</dt>
-<dd>
-existing id of a vimeo video
-</dd>
+    <dt>videoId</dt>
+    <dd>existing id of a vimeo video</dd>
 </dl>
 
 ### Return
@@ -233,39 +213,26 @@ existing id of a vimeo video
 Promise is resolved with following properties
 
 <dl>
-<dt>
-body
-</dt>
-<dd>
-body response of patch on video
-</dd>
-
-<dt>
-res
-</dt>
-<dd>
-Object.
-</dd>
-<dt>
-videoId
-</dt>
-<dd>
-Number
-</dd>
+    <dt>body</dt>
+    <dd>body response of patch on video</dd>
+    <dt>res</dt>
+    <dd>Object</dd>
+    <dt>videoId</dt>
+    <dd>Number</dd>
 </dl>
 
 
 ### Example
 
 ```JavaScript
-    var Vimeo = require('jab-vimeo').Vimeo;
-    var lib   = new Vimeo(CLIENT_ID, CLIENT_SECRET, ACCESS_TOKEN);
+var Vimeo = require('jab-vimeo').Vimeo;
+var lib   = new Vimeo(CLIENT_ID, CLIENT_SECRET, ACCESS_TOKEN);
 
-    lib.info(videoId)
-      .then(function(props) {
-        console.log(props.res.headers);
-        console.log(props.res.statusCode);
-        console.log(props.body);
-        console.log(props.videoId);
-      });
+lib.info(videoId)
+  .then(function(props) {
+    console.log(props.res.headers);
+    console.log(props.res.statusCode);
+    console.log(props.body);
+    console.log(props.videoId);
+  });
 ```
