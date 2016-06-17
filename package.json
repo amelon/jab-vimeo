@@ -16,7 +16,7 @@
     "bluebird": "^2.9.34",
     "concat-stream": "^1.5.0",
     "hyperquest": "^1.2.0",
-    "vimeo": "^1.1.4"
+    "vimeo": "^1.2.0"
   },
   "keywords": [
     "vimeo", "bluebird"
