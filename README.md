@@ -1,3 +1,9 @@
+# Deprecated
+
+see: https://www.npmjs.com/package/@b-flower/bdn-vimeo
+
+
+
 # jab-vimeo
 vimeo API + stream support &amp; duplicate &amp; patch &amp; info &amp; getDownloadStream functions
 
